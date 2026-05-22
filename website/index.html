@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Burger Barn - Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #c0392b;
+      --dark: #1a1a1a;
+      --cream: #fdf6ec;
+      --gold: #e8a020;
+      --gray: #555;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--gold); }
+
+    .cart-btn {
+      background: var(--red);
+      color: #fff !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+    }
+
+    .cart-btn:hover { background: #a93226; color: #fff !important; }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5rem 3rem;
+      min-height: 85vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(192,57,43,0.3) 0%, transparent 70%);
+      right: -100px;
+      top: -100px;
+      border-radius: 50%;
+    }
+
+    .hero-text { max-width: 550px; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn-primary:hover { background: #a93226; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { background: #fff; color: var(--dark); }
+
+    .hero-image {
+      font-size: 14rem;
+      z-index: 1;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* FEATURES */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 4px solid var(--gold);
+    }
+
+    .feature {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-right: 1px solid #ddd;
+    }
+
+    .feature:last-child { border-right: none; }
+
+    .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+    .feature h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature p { color: var(--gray); font-size: 0.95rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #aaa;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a class="logo" href="index.html">🍔 Burger Barn</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" id="menu-link">Menu</a></li>
+      <li><a href="cart.html" class="cart-btn" id="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <span class="hero-badge">Fresh &amp; Delicious</span>
+      <h1>The Best <span>Burgers</span> In Town</h1>
+      <p>Hand-crafted burgers made with 100% fresh ingredients. Order online and get it delivered hot to your door in under 30 minutes.</p>
+      <div class="hero-cta">
+        <a href="menu.html" class="btn-primary" id="order-now-btn">Order Now</a>
+        <a href="menu.html" class="btn-secondary">See Our Menu</a>
+      </div>
+    </div>
+    <div class="hero-image">🍔</div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <div class="feature-icon">🥩</div>
+      <h3>Fresh Ingredients</h3>
+      <p>We source local, high-quality ingredients every single day.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h3>Fast Delivery</h3>
+      <p>Hot and ready at your door in 30 minutes or less.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">❤️</div>
+      <h3>Made With Love</h3>
+      <p>Every burger is handcrafted by our passionate chefs.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 <span>Burger Barn</span>. Built for QA Automation Testing.</p>
+  </footer>
+
+  <script>
+    // Sync cart count from localStorage
+    document.getElementById('cart-count').textContent = JSON.parse(localStorage.getItem('cart') || '[]').length;
+  </script>
+</body>
+</html>

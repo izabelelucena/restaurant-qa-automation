@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Burger Barn - Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --red: #c0392b; --dark: #1a1a1a; --cream: #fdf6ec; --gold: #e8a020; --gray: #555; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); }
+
+    nav {
+      background: var(--dark); display: flex; justify-content: space-between;
+      align-items: center; padding: 1rem 3rem; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.8rem; font-weight: 900; text-decoration: none; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    nav ul a:hover { color: var(--gold); }
+    .cart-btn { background: var(--red); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600 !important; }
+
+    .menu-header {
+      background: var(--dark); color: #fff;
+      padding: 4rem 3rem 3rem; text-align: center;
+    }
+    .menu-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 0.5rem; }
+    .menu-header h1 span { color: var(--gold); }
+    .menu-header p { color: #aaa; font-size: 1.05rem; }
+
+    .menu-container { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+
+    .category-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; margin-bottom: 1.5rem;
+      border-left: 4px solid var(--gold); padding-left: 1rem;
+    }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+
+    .menu-card {
+      background: #fff; border-radius: 16px;
+      overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+    .menu-card-img {
+      font-size: 5rem; background: #fff8f0;
+      text-align: center; padding: 1.5rem;
+    }
+
+    .menu-card-body { padding: 1.2rem 1.5rem 1.5rem; }
+    .menu-card-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .menu-card-body p { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.5; }
+
+    .menu-card-footer {
+      display: flex; justify-content: space-between;
+      align-items: center;
+    }
+
+    .price { font-size: 1.3rem; font-weight: 700; color: var(--red); }
+
+    .add-to-cart {
+      background: var(--dark); color: #fff;
+      border: none; padding: 0.6rem 1.2rem;
+      border-radius: 50px; font-size: 0.9rem;
+      font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .add-to-cart:hover { background: var(--red); }
+
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--dark); color: #fff;
+      padding: 1rem 1.5rem; border-radius: 10px;
+      font-weight: 500; opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      z-index: 999;
+      border-left: 4px solid var(--gold);
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    footer { background: var(--dark); color: #aaa; text-align: center; padding: 2rem; font-size: 0.9rem; }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">🍔 Burger Barn</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="cart.html" class="cart-btn" id="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+  </ul>
+</nav>
+
+<div class="menu-header">
+  <h1>Our <span>Menu</span></h1>
+  <p>Fresh, bold, and made to order — pick your favourite.</p>
+</div>
+
+<div class="menu-container" id="menu-items">
+
+  <h2 class="category-title">🍔 Burgers</h2>
+  <div class="menu-grid">
+
+    <div class="menu-card" id="item-classic-burger">
+      <div class="menu-card-img">🍔</div>
+      <div class="menu-card-body">
+        <h3>Classic Smash Burger</h3>
+        <p>Double smash patty, American cheese, pickles, onion, special sauce.</p>
+        <div class="menu-card-footer">
+          <span class="price">$12.99</span>
+          <button class="add-to-cart" onclick="addToCart('Classic Smash Burger', 12.99)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" id="item-bbq-burger">
+      <div class="menu-card-img">🥓</div>
+      <div class="menu-card-body">
+        <h3>BBQ Bacon Burger</h3>
+        <p>Beef patty, crispy bacon, cheddar, BBQ sauce, caramelized onions.</p>
+        <div class="menu-card-footer">
+          <span class="price">$14.99</span>
+          <button class="add-to-cart" onclick="addToCart('BBQ Bacon Burger', 14.99)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" id="item-mushroom-burger">
+      <div class="menu-card-img">🍄</div>
+      <div class="menu-card-body">
+        <h3>Mushroom Swiss Burger</h3>
+        <p>Beef patty, sautéed mushrooms, Swiss cheese, garlic aioli, arugula.</p>
+        <div class="menu-card-footer">
+          <span class="price">$13.99</span>
+          <button class="add-to-cart" onclick="addToCart('Mushroom Swiss Burger', 13.99)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="category-title">🍟 Sides</h2>
+  <div class="menu-grid">
+
+    <div class="menu-card" id="item-fries">
+      <div class="menu-card-img">🍟</div>
+      <div class="menu-card-body">
+        <h3>Crispy Fries</h3>
+        <p>Golden, crispy fries seasoned with sea salt and herbs.</p>
+        <div class="menu-card-footer">
+          <span class="price">$4.99</span>
+          <button class="add-to-cart" onclick="addToCart('Crispy Fries', 4.99)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" id="item-onion-rings">
+      <div class="menu-card-img">🧅</div>
+      <div class="menu-card-body">
+        <h3>Onion Rings</h3>
+        <p>Beer-battered onion rings served with ranch dipping sauce.</p>
+        <div class="menu-card-footer">
+          <span class="price">$5.99</span>
+          <button class="add-to-cart" onclick="addToCart('Onion Rings', 5.99)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="category-title">🥤 Drinks</h2>
+  <div class="menu-grid">
+
+    <div class="menu-card" id="item-milkshake">
+      <div class="menu-card-img">🥛</div>
+      <div class="menu-card-body">
+        <h3>Classic Milkshake</h3>
+        <p>Thick and creamy. Choose from vanilla, chocolate, or strawberry.</p>
+        <div class="menu-card-footer">
+          <span class="price">$6.99</span>
+          <button class="add-to-cart" onclick="addToCart('Classic Milkshake', 6.99)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" id="item-soda">
+      <div class="menu-card-img">🥤</div>
+      <div class="menu-card-body">
+        <h3>Fountain Soda</h3>
+        <p>Pepsi, Coke, Sprite, or Lemonade. Free refills!</p>
+        <div class="menu-card-footer">
+          <span class="price">$2.99</span>
+          <button class="add-to-cart" onclick="addToCart('Fountain Soda', 2.99)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ Item added to cart!</div>
+
+<footer>
+  <p>&copy; 2026 <span>Burger Barn</span>. Built for QA Automation Testing.</p>
+</footer>
+
+<script>
+  function getCart() { return JSON.parse(localStorage.getItem('cart') || '[]'); }
+  function saveCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
+
+  function updateCartCount() {
+    document.getElementById('cart-count').textContent = getCart().length;
+  }
+
+  function addToCart(name, price) {
+    const cart = getCart();
+    cart.push({ name, price });
+    saveCart(cart);
+    updateCartCount();
+    showToast();
+  }
+
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+
+  updateCartCount();
+</script>
+</body>
+</html>
